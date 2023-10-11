@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Controller@showWelcome');
+Route::get('/myroute', 'Controller@showSample');
+Route::get('/users', 'Controller@listUsers');
+Route::get('/users/{user}', 'Controller@showUser');
+
