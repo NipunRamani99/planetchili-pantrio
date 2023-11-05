@@ -37,5 +37,8 @@ export default {
             aggregateTimeout: 300,
             poll: 500,
         }
+    },
+    typescript: {
+        typeCheck: true
     }
 }

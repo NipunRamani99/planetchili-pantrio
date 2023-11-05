@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h1 class="title">HELLO FREAK BIRCHES: {{thing}}</h1>
+        <h1 class="title">HELLO FREAK BIRCHES: {{ thing }}</h1>
 
         <table class="table">
             <thead>
@@ -8,15 +8,15 @@
             <th>bar</th>
             </thead>
             <tbody>
-                <tr v-for="data in tdata">
-                    <td>{{data.foo}}</td>
-                    <td>{{data.bar}}</td>
-                </tr>
+            <tr v-for="data in tdata">
+                <td>{{ data.foo }}</td>
+                <td>{{ data.bar }}</td>
+            </tr>
             </tbody>
         </table>
 
         <div>
-            Total: {{total}}
+            Total: {{ total }}
         </div>
 
         <div class="field">
@@ -42,41 +42,33 @@
         </div>
     </section>
 </template>
-<script>
-export default {
-    head() {
-        return {
-            titleTemplate: '%s - Nuxt',
-            title:'hello world'
-        }
-    },
+<script lang="ts">
+import {Vue, Component} from "vue-facing-decorator";
 
-    data() {
-        return {
-            thing: 420,
-            fooInput: '',
-            barInput: '',
-            tdata: [
-                {foo:"Hello", bar:420},
-                {foo:"Hello", bar:56},
-                {foo:"Hello", bar:95},
-            ]
-        };
-    },
+@Component
+export default class IndexClass extends Vue {
+    thing = 420;
+    fooInput = "Test";
+    barInput = 0;
+    tdata = [
+        { foo: "Hello", bar: 420 },
+        { foo: "Hello", bar: 56 },
+        { foo: "Hello", bar: 95 },
+    ];
 
-    methods: {
-        addRow() {
-            this.tdata.push({foo:this.fooInput, bar: this.barInput});
-        },
-        deleteRow() {
-            this.tdata.pop();
-        }
-    },
-    computed: {
-        total() {
-            return this.tdata.reduce((carry, obj) => carry + obj.bar, 0);
-        }
+    addRow() {
+        const newrow = {foo: this.fooInput, bar: this.barInput};
+        this.tdata.push(newrow);
     }
+
+    deleteRow() {
+        this.tdata.pop();
+    }
+
+    get total() {
+        return this.tdata.reduce((carry, obj) => carry + obj.bar, 0);
+    }
+
 }
 </script>
 
